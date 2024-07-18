@@ -1,0 +1,184 @@
+<!-- <?php
+    session_start(); //セッション変数を受け取る
+    //入力画面からのアクセスでなければ戻す
+    if(!isset($_SESSION['form'])) {
+      header('Location: index.php');
+      exit();
+  } else {
+    $post = $_SESSION['form'];
+  }
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+    //メールを送信する
+    $to = 'me@example.com'; //受け取りのメールアドレスを記載
+    $from = $post['email'];
+    $subject = 'お問い合せが届きました！';
+    $body = <<<EOT
+    名前： {$post['name']}
+    メールアドレス： {$post['email']}
+    内容： {$post['contact']}
+    EOT; //ヒアドキュメント(互いに内容が一致しているとそのまま変数として入る)
+    mb_send_mail($to, $subject, $body, "From: {$from}");
+    //セッションを消してお礼画面へ
+    unset($_SESSION['form']);
+    header('Location: thanks.html');    //問題なければ、thanksページへ移行
+    exit();
+    }
+?> -->
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/reset.css" />
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" href="./img/item/favicon.png" />
+    <!-- ファビコンの設置 -->
+    <title>確認画面</title>
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- ヘッダー -->
+        <header class="header contact_header" id="section00">
+            <div class="inner">
+                <div class="header_LogoArea">
+                    <a href="#section00"><img src="./img/item/logo.svg" alt="" /></a>
+                </div>
+                <div class="header_menu_sp">
+                    <input id="menu_box" type="checkbox">
+                    <label for="menu_box" class="menu_btn"><span></span></label>
+                    <label for="menu_box" class="menu_back"></label>
+                    <nav class="header_menu">
+                        <ul>
+                            <li class="logo_pc">
+                                <a href="#section00"><img src="./img/item/logo.svg" alt="" /></a>
+                            </li>
+                            <li>
+                                <a href="#section01"><img class="header_icon" src="./img/item/profile_black.svg" alt="" />ABOUT</a>
+                            </li>
+                            <span class="vertical_border"></span>
+                            <li>
+                                <a href="#section02"><img class="header_icon" src="./img/item/work_black.svg" alt="" />WORKS</a>
+                            </li>
+                            <span class="vertical_border"></span>
+                            <li>
+                                <a href="#section03"><img class="header_icon" src="./img/item/skill_black.svg" alt="" />SKILL</a>
+                            </li>
+                            <span class="vertical_border"></span>
+                            <li>
+                                <a href="#section04"><img class="header_icon" src="./img/item/future_black.svg" alt="" />FUTURE</a>
+                            </li>
+                            <span class="vertical_border"></span>
+                            <li>
+                                <a href="#section05"><img class="header_icon" src="./img/item/contact_black.svg" alt="" />CONTACT</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <div class="border_03">
+            <img src="./img/item/bg_bottom03.svg" alt="区切りイラスト">
+        </div>
+
+        <div class="border_01">
+            <img src="./img/item/bg_texture04.svg" alt="区切りイラスト">
+        </div>
+
+        <main>
+
+            <div class="contact confirm">
+                <div class="inner">
+                    <ul class="contact_pan">
+                        <li>入力</li>
+                        <li class="pin">確認</li>
+                        <li>完了</li>
+                    </ul>
+                    <div class="subtitle" id="section05">
+                        <h2>確認画面</h2>
+                        <hr>
+                    </div>
+                    <p class="sub_text">ご入力内容に誤りがないかご確認ください。</p>
+                    <form>
+                        <label class="form_item">
+                            <span class="form_title">お名前</span>
+                            <div class="confirm_text">
+                                <p>テストテキスト</p>
+                                <!-- <?php echo htmlspecialchars($post['name']); ?> -->
+                            </div>
+                        </label>
+                        <label class="form_item">
+                            <span class="form_title up_space">メールアドレス</span>
+                            <div class="confirm_text">
+                                <p>テストテキスト</p>
+                                <!-- <?php echo htmlspecialchars($post['email']); ?> -->
+                            </div>
+                        </label>
+                        <label class="form_item">
+                            <span class="form_title up_space">お問い合わせ内容</span>
+                            <div class="confirm_text left_text">
+                                <p>テストテキストテストテキストテストテキストテストテキスト</p>
+                                <!-- <?php echo nl2br(htmlspecialchars($post['contact'])); ?> -->
+                                <!-- nl2brで改行ができるように対応 -->
+                            </div>
+                        </label>
+
+                        <div class="confirm_submit">
+                            <a href="index.php" class="form_back">戻る</a>
+                            <input class="submit" type="submit" value="送信する" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </main>
+
+        <div class="border_01">
+            <img src="./img/item/bg_texture.svg" alt="区切りイラスト">
+        </div>
+
+        <div class="border_03">
+            <img src="./img/item/bg_bottom02.svg" alt="区切りイラスト">
+        </div>
+
+        <footer class="footer">
+            <div class="footer_wrap">
+                <div class="footer_LogoArea">
+                    <a href="#section00"><img src="./img/item/logo.svg" alt="ロゴ" /></a>
+                </div>
+                <div class="footer_content">
+                    <ul>
+                        <div class="content_half">
+                            <li><a href="#">コンテンツ1</a></li>
+                            <li><a href="#">コンテンツ2</a></li>
+                            <li><a href="#">コンテンツ3</a></li>
+                        </div>
+                        <div class="content_half">
+                            <li><a href="#">コンテンツ4</a></li>
+                            <li><a href="#">コンテンツ5</a></li>
+                            <li><a href="#">コンテンツ6</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <p>©︎ 2022.NAME</p>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
