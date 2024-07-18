@@ -1,0 +1,559 @@
+# Portfolio_ver.03
+<!-- <?php
+  error_reporting(E_ALL ^ E_NOTICE);  //noticeエラーを非表示
+  session_start(); //セッション変数
+  $error =[];
+
+  if($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING); //文字列のフィルタリングを行うことが出来る
+  // フォームの送信時にエラーをチェックする
+  if ($_POST['name'] === '') {
+    $error['name'] = 'blank';
+  }
+  if ($_POST['email'] === '') {
+    $error['email'] = 'blank';
+  } else if (!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
+    //!：否定　→ メールアドレスの書式が間違っている時にfalseをtrue扱いにする
+    $error['email'] = 'email';
+  }
+  if ($_POST['contact'] === '') {
+    $error['contact'] = 'blank';
+  }
+  //エラーが一件もなければ、確認画面に移動
+  if (count($error) === 0) {
+    $_SESSION['form'] = $post;  //セッション変数を次のページでも引き継ぐ
+    header('Location: confirm.php');    //確認ページへ飛ばす
+    exit();
+  }
+} else {
+  if(isset($_SESSION['form'])) {  //戻ってきてもセッション変数を渡して、入力を再現
+      $post = $_SESSION['form'];
+    }
+}
+?> -->
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex , nofollow" />
+    <!-- ダミーサイトなので検索表示させない -->
+    <link rel="stylesheet" href="./css/reset.css" />
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap" rel="stylesheet">
+
+    <!-- Slick読み込み -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" href="./img/item/favicon2.png" />
+    <!-- ファビコンの設置 -->
+    <title>自己紹介サイト</title>
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- ヘッダー -->
+        <header class="header" id="section00">
+            <div class="inner">
+                <div class="header_LogoArea">
+                    <a href="#section00"><h1>Conect</h1></a>
+                </div>
+                <div class="header_menu_sp">
+                    <input id="menu_box" type="checkbox">
+                    <label for="menu_box" class="menu_btn"><span></span></label>
+                    <label for="menu_box" class="menu_back"></label>
+                    <nav class="header_menu">
+                        <ul>
+                            <li class="logo_pc">
+                                <a href="#section00"><h1>Conect</h1></a>
+                            </li>
+                            <li>
+                                <a href="#section01"><img class="header_icon" src="./img/item/profile.svg" alt="aboutアイコン" />ABOUT</a>
+                            </li>
+                            <span class="vertical_border"></span>
+                            <li>
+                                <a href="#section02"><img class="header_icon" src="./img/item/work.svg" alt="worksアイコン" />WORKS</a>
+                            </li>
+                            <span class="vertical_border"></span>
+                            <li>
+                                <a href="#section03"><img class="header_icon" src="./img/item/skill.svg" alt="skillアイコン" />SKILL</a>
+                            </li>
+                            <span class="vertical_border"></span>
+                            <li>
+                                <a href="#section04"><img class="header_icon" src="./img/item/future.svg" alt="futureアイコン" />FUTURE</a>
+                            </li>
+                            <span class="vertical_border"></span>
+                            <li>
+                                <a href="#section05"><img class="header_icon" src="./img/item/contact.svg" alt="contactアイコン" />CONTACT</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <div class="border_04">
+            <img src="./img/item/bg_texture.svg" alt="区切りイラスト">
+        </div>
+        <div class="border_02">
+            <img src="./img/item/bg_bottom02.svg" alt="区切りイラスト">
+        </div>
+
+        <main>
+            <div class="top">
+                <h1>繋がるデザイン</h1>
+            </div>
+
+            <div class="border_02">
+                <img src="./img/item/bg_bottom03.svg" alt="区切りイラスト">
+            </div>
+
+            <div class="border_01">
+                <img src="./img/item/bg_texture04.svg" alt="区切りイラスト">
+            </div>
+
+            <div class="about">
+                <div class="subtitle" id="section01">
+                    <h2>ABOUT</h2>
+                    <hr>
+                    <p>私について</p>
+                </div>
+                <p class="sub_text">はじめまして、簡単な自己紹介を致します。<br>下のボタンを押すと詳しく見ることが出来ます。</p>
+                <div class="about_item inner">
+                    <img class="self-portrait" src="./img/about/about06.jpg" alt="自画像">
+                    <div class="about_text">
+                        <span>
+                            <h3 class="text_title">名前</h3>
+                            <h2>麓 恵人</h2>
+                            <p>Fumoto Keito</p>
+                        </span>
+                        <span>
+                            <h3 class="text_title">年齢</h3>
+                            <h3>27歳</h3>
+                            <p>1997/01/05</p>
+                        </span>
+                        <span>
+                            <h3 class="text_title">出身地</h3>
+                            <h3>鹿児島県 徳之島町</h3>
+                        </span>
+                        <span>
+                            <h3 class="text_title">趣味</h3>
+                            <h3>映画鑑賞 , 料理</h3>
+                        </span>
+                        <span>
+                            <h3 class="text_title">職務経歴</h3>
+                            <h3>半導体開発事業部</h3>
+                            <p>1年間</p>
+                        </span>
+                    </div>
+                </div>
+                <!-- <div class="next_btn">
+                    <a href="about.html">詳細をみる<span>></span></a>
+                </div> -->
+            </div>
+
+            <div class="border_01">
+                <img src="./img/item/bg_texture.svg" alt="区切りイラスト">
+            </div>
+
+            <div class="border_02">
+                <img src="./img/item/bg_bottom02.svg" alt="区切りイラスト">
+            </div>
+
+            <div class="work">
+                <div class="inner">
+                    <div class="subtitle" id="section02">
+                        <h2>WORKS</h2>
+                        <hr>
+                        <p>ポートフォリオ</p>
+                    </div>
+                    <p class="sub_text">クリックすると、制作物の詳細が確認できます。<br><img src="./img/item/attention.svg" alt="注意アイコン" />全て仮想案件として作成しており、ダミーサイトとなっております。</p>
+                    <!-- Slider -->
+                    <div class="slider" id="js-slider">
+                        <div class="slider_item">
+                            <a class="slider_panel js_modal_open" data-target="modal01" href="制作物01"><img src="img/work/work_01.svg" alt="じゃがいもサイト" /></a>
+                        </div>
+                        <div class="slider_item">
+                            <a class="slider_panel js_modal_open" data-target="modal02" href="制作物02"><img src="img/work/work04.jpg" alt="地元の観光サイト" /></a>
+                        </div>
+                        <div class="slider_item">
+                            <a class="slider_panel js_modal_open" data-target="modal03" href="制作物03"><img src="img/work/work_03.svg" alt="居酒屋サイト" /></a>
+                        </div>
+                        <div class="slider_item">
+                            <a class="slider_panel js_modal_open" data-target="modal04" href="制作物04"><img src="img/work/reserve.svg" alt="未設定" /></a>
+                        </div>
+                        <!-- <div class="slider_item">
+                            <a class="slider_panel js_modal_open" data-target="modal04" href="制作物05"><img src="img/work/reserve.svg" alt="未設定" /></a>
+                        </div>
+                        <div class="slider_item">
+                            <a class="slider_panel js_modal_open" data-target="modal04" href="制作物06"><img src="img/work/reserve.svg" alt="未設定" /></a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- モーダルウィンドウ -->
+            <div id="modal01" class="modal js-modal">
+                <div class="modal_bg js_modal_close"></div>
+                <div class="modal_content">
+                    <span>
+                        <h3>制作目的</h3>
+                        <p>主婦層や高齢者層に向けたじゃがいもの購入意欲を高めるポートフォリオサイト</p>
+                    </span>
+                    <span>
+                        <h3>制作ページ</h3>
+                        <p>TOPページ、準備中ページ</p>
+                    </span>
+                    <span>
+                        <h3>制作期間</h3>
+                        <p>7日</p>
+                    </span>
+                    <span>
+                        <h3>使用ツール</h3>
+                        <p>AdobeXD、Photoshop、Vscode</p>
+                    </span>
+                    <span>
+                        <h3>工夫した点</h3>
+                        <p>配色にナチュラルカラーを採用し、南国の自然の暖かい雰囲気を出しました。加えて、背景に南国感があるアイテムを配置しました。SVG画像は、色味や雰囲気を合わせるために自主作成いたしました。</p>
+                    </span>
+                    <span>
+                        <h3>サイトURL</h3>
+                        <p>閲覧はこちらをクリック ▶︎ <a class="text_url" href="https://gajumaru05.github.io/Portfolio_ver.02/">じゃがいも/PRサイト</a></p>
+                    </span>
+                    <a class="js_modal_close" href="">閉じる</a>
+                </div>
+            </div>
+            <div id="modal02" class="modal js-modal">
+                <div class="modal_bg js_modal_close"></div>
+                <div class="modal_content">
+                    <span>
+                        <h3>制作目的</h3>
+                        <p>地元の観光地PRの為のポートフォリオサイト</p>
+                    </span>
+                    <span>
+                        <h3>制作ページ</h3>
+                        <p>TOPページのみ</p>
+                    </span>
+                    <span>
+                        <h3>制作期間</h3>
+                        <p>7日</p>
+                    </span>
+                    <span>
+                        <h3>使用ツール</h3>
+                        <p>AdobeXD、Photoshop、Vscode</p>
+                    </span>
+                    <span>
+                        <h3>工夫した点</h3>
+                        <p>配色に海の色を取り入れ、暖かい印象を持たせました。</p>
+                    </span>
+                    <span>
+                        <h3>サイトURL</h3>
+                        <p>閲覧はこちらをクリック(未設定) ▶︎ <a class="text_url" href="#">観光サイト</a></p>
+                    </span>
+                    <a class="js_modal_close" href="">閉じる</a>
+                </div>
+            </div>
+            <div id="modal03" class="modal js-modal">
+                <div class="modal_bg js_modal_close"></div>
+                <div class="modal_content">
+                    <span>
+                        <h3>制作目的</h3>
+                        <p>若いお客様や観光客に向けた和風モダンな居酒屋をイメージしたポートフォリオサイト</p>
+                    </span>
+                    <span>
+                        <h3>制作ページ</h3>
+                        <p>TOPページ、メニューの詳細ページ、お問い合わせフォーム、確認画面、お礼画面<br>※お問い合わせフォーム以降は枠組みのみ作成</p>
+                    </span>
+                    <span>
+                        <h3>制作期間</h3>
+                        <p>14日</p>
+                    </span>
+                    <span>
+                        <h3>使用ツール</h3>
+                        <p>AdobeXD、Photoshop、Vscode</p>
+                    </span>
+                    <span>
+                        <h3>工夫した点</h3>
+                        <p>和風な雰囲気を出すために、和風な配色と縦書きを一部に取り入れました。加えて、ユーザーの視線誘導に配慮した配置をしました。</p>
+                    </span>
+                    <span>
+                        <h3>サイトURL</h3>
+                        <p>閲覧はこちらをクリック ▶︎ <a class="text_url" href="https://gajumaru05.github.io/Portfolio_ver.03/">居酒屋サイト</a></p>
+                    </span>
+                    <a class="js_modal_close" href="">閉じる</a>
+                </div>
+            </div>
+            <div id="modal04" class="modal js-modal">
+                <div class="modal_bg js_modal_close"></div>
+                <div class="modal_content">
+                    <div class="preparation">
+                        <h3>準備中</h3>
+                        <p>申し訳ございません、現在、作成中です。</p>
+                    </div>
+                    <a class="js_modal_close" href="">閉じる</a>
+                </div>
+            </div>
+
+            <div class="border_02">
+                <img src="./img/item/bg_bottom03.svg" alt="区切りイラスト">
+            </div>
+
+            <div class="border_01">
+                <img src="./img/item/bg_texture04.svg" alt="区切りイラスト">
+            </div>
+
+            <div class="skill">
+                <div class="inner">
+                    <div class="subtitle" id="section03">
+                        <h2>SKILL</h2>
+                        <hr>
+                        <p>スキル</p>
+                    </div>
+                    <p class="sub_text">私は以下のことが出来ます。</p>
+                    <div class="skill_item">
+                        <ul>
+                            <li>
+                                <div class="skill_icon">
+                                    <img class="skill_icon_space" src="./img/skill/html.svg" alt="htmlアイコン">
+                                    <img src="./img/skill/css.svg" alt="cssアイコン">
+                                </div>
+                                <hr>
+                                <p>参考書やWeb教材を活用し、基礎構文やタグなどを理解おり、静的なサイトを作成できます。エラーが発生した際も、自己解決できるように励んでおります。</p>
+                            </li>
+                            <li>
+                                <div class="skill_icon">
+                                    <img class="skill_icon_space" src="./img/skill/javascript.svg" alt="javascriptアイコン">
+                                    <img src="./img/skill/jquery.svg" alt="jqueryアイコン">
+                                </div>
+                                <hr>
+                                <p>参考書や動画教材を通して、現在も知識を深めています。モーダルウィンドウやアコーディオンの簡易的なプラグインを活用できます。</p>
+                            </li>
+                            <li>
+                                <div class="skill_icon">
+                                    <img class="skill_icon_space" src="./img/skill/pt.svg" alt="Photoshopアイコン">
+                                    <img src="./img/skill/xd.svg" alt="XDアイコン">
+                                </div>
+                                <hr>
+                                <p>Photoshopでは、被写体の切り抜きやレイヤーなどの基礎知識を理解し、簡単なレイアウトを作成可能です。ワイヤーフレームは、FigmaやXDを活用できます。</p>
+                            </li>
+                            <li>
+                                <div class="skill_icon">
+                                    <img src="./img/skill/web.svg" alt="Webアイコン">
+                                </div>
+                                <hr>
+                                <p>参考書籍やWeb教材などを活用し、余白や視線誘導などに関する基本的な知識を学びました。得た知識を活かし、ポートフォリオサイトをアップデートしました。</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border_01">
+                <img src="./img/item/bg_texture.svg" alt="区切りイラスト">
+            </div>
+
+            <div class="border_02">
+                <img src="./img/item/bg_bottom02.svg" alt="区切りイラスト">
+            </div>
+
+            <div class="future">
+                <div class="inner">
+                    <div class="subtitle" id="section04">
+                        <h2>FUTURE</h2>
+                        <hr>
+                        <p>目標</p>
+                    </div>
+                    <p class="sub_text">Webデザイナーになるための目標を記載しています。<br>※ STEPの箇所を押すと詳細を見れます。</p>
+
+                    <!-- アコーディオン -->
+                    <div class="accordion_area">
+                        <div class="accordion_item">
+                            <div class="accordion_surface stay">
+                                <div class="surface_inner">
+                                    <h4>STEP</h4>
+                                    <h2>01</h2>
+                                    <div class="plus_box"><i class="plus_icon"></i></div>
+                                </div>
+                            </div>
+                            <div class="accordion_inner stay">
+                                <div class="text_box stay">
+                                    <h2><span class="marker"><img class="flag" src="./img/item/future.svg" alt="チェックフラッグ" />Webサイト制作の流れを掴む！</span></h2>
+                                    <p>一からサイトを制作するための基礎知識を学び、アップロードまでの手順を理解</p>
+                                    <div class="check_text text_first">
+                                        <img src="./img/item/check.svg" alt="チェックBOX">
+                                        <h4>HTML/CSSの基礎知識を学び、サイト制作</h4>
+                                    </div>
+                                    <div class="check_text">
+                                        <img src="./img/item/check.svg" alt="チェックBOX">
+                                        <h4>javascriptやjQueryを基礎を学び、制作サイトに構成</h4>
+                                    </div>
+                                    <div class="check_text">
+                                        <img src="./img/item/check.svg" alt="チェックBOX">
+                                        <h4>制作したサイトをアップロードし、閲覧可能な状態に</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion_item">
+                            <div class="accordion_surface">
+                                <div class="surface_inner">
+                                    <h4>STEP</h4>
+                                    <h2>02</h2>
+                                    <div class="plus_box"><i class="plus_icon"></i></div>
+                                </div>
+                            </div>
+                            <div class="accordion_inner">
+                                <div class="text_box">
+                                    <h2><span class="marker"><img class="flag" src="./img/item/future.svg" alt="チェックフラッグ" />目的に沿ったデザインを意識する！</span></h2>
+                                    <p>デザインの基礎を学び、制作目的やコンセプトを設定し、サイトを作成</p>
+                                    <div class="check_text text_first">
+                                        <img src="./img/item/check.svg" alt="チェックBOX">
+                                        <h4>デザインの基礎を学ぶ (余白や配色など)</h4>
+                                    </div>
+                                    <div class="check_text">
+                                        <img src="./img/item/check.svg" alt="チェックBOX">
+                                        <h4>学んだ基礎を活かして、サイト制作</h4>
+                                    </div>
+                                    <div class="check_text">
+                                        <img src="./img/item/check.svg" alt="チェックBOX">
+                                        <h4>第三者に添削を頂き、サイトの構成などを改善</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion_item">
+                            <div class="accordion_surface">
+                                <div class="surface_inner">
+                                    <h4>STEP</h4>
+                                    <h2>03</h2>
+                                    <div class="plus_box"><i class="plus_icon"></i></div>
+                                </div>
+                            </div>
+                            <div class="accordion_inner">
+                                <div class="text_box">
+                                    <h2><span class="marker"><img class="flag" src="./img/item/future.svg" alt="チェックフラッグ" />成果へ繋げるエンジニアに！</span></h2>
+                                    <p>Webマーケティングにも意識を向け、お客様の成果に繋がるデザイン制作</p>
+                                    <div class="check_text text_first">
+                                        <img src="./img/item/check.svg" alt="チェックBOX">
+                                        <h4>参考書を通して、Webマーケティングの基礎を学ぶ</h4>
+                                    </div>
+                                    <div class="check_text">
+                                        <img src="./img/item/box.svg" alt="チェックBOX">
+                                        <h4>STEP02へ戻り、サイト制作を繰り返して復習</h4>
+                                    </div>
+                                    <div class="check_text">
+                                        <img src="./img/item/box.svg" alt="チェックBOX">
+                                        <h4>現場での経験を積む</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border_02">
+                <img src="./img/item/bg_bottom03.svg" alt="区切りイラスト">
+            </div>
+
+            <div class="border_01">
+                <img src="./img/item/bg_texture04.svg" alt="区切りイラスト">
+            </div>
+
+            <div class="contact">
+                <div class="inner">
+                    <div class="subtitle" id="section05">
+                        <h2>CONTACT</h2>
+                        <hr>
+                        <p>連絡</p>
+                    </div>
+                    <p class="sub_text">ご質問などあれば、気軽に連絡して頂けると嬉しいです。</p>
+                    <form action="" method="POST" novalidate>
+                        <!-- action属性は飛ばす先を指定できる(指定しなければ自らのファイルに)+novalidateは完成後に外す(=requiredを無効化している) -->
+                        <label class="form_item">
+                            <span class="form_title">お名前<span class="required">必須</span></span>
+                            <input type="text" name="name" value="" placeholder="Your name..." required />
+                            <!-- value内に記載　▶︎ <?php echo htmlspecialchars($post['name']); ?> -->
+                            <!-- valueの設定で入力の再現が可能になる -->
+                            <!-- requiredで入力必須をWeb上へ設定 -->
+                            <!-- <?php if ($error['name'] === 'blank'): ?>
+                            <p class="error_msg">※お名前をご記入ください</p>
+                            <?php endif ?> -->
+                        </label>
+                        <label class="form_item">
+                            <span class="form_title up_space">メールアドレス<span class="required">必須</span></span>
+                            <input type="text" name="email" value="" placeholder="Your mail address..." required />
+                            <!-- value内に記載　▶︎ <?php echo htmlspecialchars($post['email']); ?> -->
+                            <!-- <?php if ($error['email'] === 'blank'): ?>
+                            <p class="error_msg">※メールアドレスをご記入ください</p>
+                            <?php endif ?>
+                            <?php if ($error['email'] === 'email'): ?>
+                            <p class="error_msg">※メールアドレス正しくご記入ください</p>
+                            <?php endif ?> -->
+                        </label>
+                        <label class="form_item">
+                            <span class="form_title up_space">お問い合わせ内容<span class="required">必須</span></span>
+                            <textarea type="textarea" name="contact" placeholder="Your comments..." required></textarea>
+                            <!-- textareaタグの中に　▶︎ <?php echo htmlspecialchars($post['contact']); ?> -->
+                            <!-- <?php if ($error['contact'] === 'blank'): ?>
+                            <p class="error_msg">※お問合せ内容をご記入ください</p>
+                            <?php endif ?> -->
+                        </label>
+                        <label class="form_submit">
+                            <input type="submit" value="確認画面へ" />
+                        </label>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <div class="top_btn">
+            <div class="inner">
+                <a href="#section00"><img src="./img/item/top02.svg" alt="TOPへ戻る"></a>
+            </div>
+        </div>
+
+        <div class="border_01">
+            <img src="./img/item/bg_texture.svg" alt="区切りイラスト">
+        </div>
+
+        <div class="border_03">
+            <img src="./img/item/bg_bottom02.svg" alt="区切りイラスト">
+        </div>
+
+        <footer class="footer">
+            <div class="footer_wrap">
+                <div class="footer_LogoArea">
+                    <a href="#section00"><h1>Conect</h1></a>
+                </div>
+                <div class="footer_content">
+                    <ul>
+                        <div class="content_half">
+                            <li><a href="#">コンテンツ1</a></li>
+                            <li><a href="#">コンテンツ2</a></li>
+                            <li><a href="#">コンテンツ3</a></li>
+                        </div>
+                        <div class="content_half">
+                            <li><a href="#">コンテンツ4</a></li>
+                            <li><a href="#">コンテンツ5</a></li>
+                            <li><a href="#">コンテンツ6</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <p>©︎ 2024.KEITO</p>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
